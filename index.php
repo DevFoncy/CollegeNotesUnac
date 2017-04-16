@@ -16,7 +16,7 @@
 
 
 						 		 <?php 
-						 		 $codigo=1234;
+						 		 $codigo=2964;
 						 		 $iterador=0;
 
 						 		 	$ok=false;
@@ -57,12 +57,12 @@
 								 		 			<td>
 								 		 			<select name='sel'>
 								 		 			<option value='ep'>Parcial</option>
-								 		 			<option value='ef'>Final</option>
-								 		 			<option value='p1'>pc1</option>
+					   			 		 			<option value='p1'>pc1</option>
 								 		 			<option value='p2'>pc2</option>
 								 		 			<option value='p3'>pc3</option>
 								 		 			<option value='p4'>pc4</option>
 								 		 			<option value='lab'>Labo</option>
+								 		 			<option value='ef'>Final</option>
 								 		 			<option value='s'>Susti</option>
 								 		 			</select>
 								 		 			</td>
