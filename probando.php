@@ -37,19 +37,27 @@
 
 				    for( $i=0;  $i< $size; $i++){
 				       //$conex3->preparar("REPLACE INTO nota(codigo_nota, $name_tipo) VALUES ($codigo_nota[$i],$ex_parcial1[$i])");	
-				       $conex3->preparar("UPDATE nota SET $tipo_examen1=$tipo_examen[$i] WHERE codigo_nota=$codigo_nota[$i]");
-				       $conex3->ejecutar();
+				       $var= $conex3->preparar("UPDATE nota SET $tipo_examen1=$tipo_examen[$i] WHERE codigo_nota=$codigo_nota[$i]");
+				       if($var==false){
+				       		echo "hubo un error";
+				       		header("Refresh:1; url=index.php");
+				       		$conex3->cerrar_conex();
+				       }
+				       else{
+				       	$conex3->ejecutar();
+				       	}
 				    }
 				    echo "ingresado";
 
 				     //segundo update
-
+				    	if($var!=false){
 				    	 $conex3->preparar("UPDATE profesor_curso SET $tipo_examen1=1 WHERE codigo_curso='$codigo_curso' and codigo_profesor='$codigo_profe' and codigo_turno= '$codigo_turno'");
+				    	
 				    	$conex3->ejecutar();
-				    	//header("Refresh:1; url=index.php"); 
+				    	header("Refresh:1; url=index.php"); }
 
  ?>
 
-e
+
 
 <?php require 'inc/footer.inc'; ?>

@@ -13,7 +13,9 @@
 		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
 		<script type="text/javascript" src="js/jquery-validation-1.9.0/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="js/jquery-validation-1.9.0/lib/jquery.metadata.js"></script>
+		
+				
 
 	</head>
 	
-	<body>
+	<body style="background-color:#B8EBEE">

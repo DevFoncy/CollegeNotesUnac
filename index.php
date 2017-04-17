@@ -3,20 +3,38 @@
 				    <div class="row">
 				    	 <div class="col-md-12 text-center">
 				    	 	<div align="center" class="alert alert-info">
-                			<h1 class="text-info">Bienvenido al Sistema de Notas </h1>
-				    	 	<img src="img/alumno.png" width="120" height="120">
+                			<h1 class="text-info"> <strong>BIENVENIDO AL SISTEMA DE REGISTRO DE NOTAS</strong> </h1>
+                			<div class="row">
+
+                			<div class="col-md-3">  <img src="img/captura.png" width="200" height="120" > </div>
+                			<div class="col-md-2 col-md-offset-2">  <img src="img/alumno.png" width="120" height="120" > </div>
+                			<div class="col-md-2 col-md-offset-1 ">  <img src="img/logo.png" width="400" height="120" > </div>
+				    	 	</div>
 
 				    	 </div>
 				    </div>
 				    <div class="row">
-						<div class="col-md-6 col-md-offset-3">
+				        <div class="col-md-4 col-md-offset-1">
+				        	<div class="panel panel-default">
+							  <div class="alert alert-danger"><strong> INSTRUCCIONES </strong></div>
+							  <div class="panel-body">
+							    <p>A continuación le presentamos una lista de todos los cursos que usted dicta diferenciado por sus grupos. 
+							       Por favor escoja el tipo de examen a llenar y seguidamente darle CLIC en la opción REGISTRAR
+							    </p>
+							  </div>
+							 
+							  
+							</div>
+				        </div>
+
+						<div class="col-md-6"> 
 							<div class="panel panel-default">
-						 		 <div class="panel-body">
 
 
 
 						 		 <?php 
-						 		 $codigo=2964;
+						 		 session_start();
+						 		  $codigo=$_SESSION['codigo'];			
 						 		 $iterador=0;
 
 						 		 	$ok=false;
@@ -29,7 +47,15 @@
 
 
 						 		   if($validar_profe ==1){
-						 		   			echo "Pertenece al sistema <br>"; 
+
+						 		   			$conex->preparar("SELECT codigo_profesor, apellido_profesor, nombre_profesor from profesor WHERE codigo_profesor='$codigo'");
+						 		   			$conex->ejecutar();
+						 		 			$conex->prep()->bind_result($cod,$ap,$n);
+						 		 			while($conex->resultado()){
+						 		 				echo "Codigo del Profesor : ".$cod."<br>";
+						 		 				echo "Bienvenido Profesor :".$ap." ".$n;
+						 		 			}
+
 						 		   			$conex->preparar("SELECT p.codigo_curso, p.codigo_turno, c.nombre_curso  from profesor_curso p, curso c  WHERE p.codigo_profesor=$codigo and c.codigo_curso=p.codigo_curso");
 						 		   			$conex->ejecutar();
 						 		   			$conex->prep()->bind_result($curso_1, $turno_1, $nombre_1);
@@ -90,7 +116,7 @@
 						 		  ?>
 
 						 		 	
-						  		</div>
+						  		
 						</div>
 						</div>
 					</div>

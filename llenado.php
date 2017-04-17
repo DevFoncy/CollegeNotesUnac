@@ -1,6 +1,7 @@
-<?php require 'inc/cabecera.inc'; 
+<?php  require 'inc/cabecera.inc'; 
 	   require 'conexion.php';
-	    require 'Database.php';
+	   require 'Database.php';
+	   require 'confirmacion.js';
 
 		$curso_m = $_POST['curso'];
 		$turno_m = $_POST['turno'];
@@ -62,32 +63,28 @@
 	  			$var=$aviso;                  
 			}
 
-	echo $codigo_profe;
-	echo $var;
-	echo $curso_m;
 
 ?>
 
-<script type="text/javascript">
-	
-	function prueba(nota){
-		nota=document.getElementById(nota);
-		if(nota.value==""){
-		alert("XD");	
-		}
-		else{
-		alert("dX");
-			
-		}
-	
-	}
-	
-
-
-</script>
 <div class="container-fluid">
 	    <div class="row">
-			<div class="col-sm-7 col-sm-offset-2">
+	    	<div class="col-md-4">
+				        	<div class="panel panel-default">
+							  <div class="alert alert-danger" align="center"><strong>INDICACIONES</strong></div>
+							 
+							  <ul class="list-group">
+							    <li class="list-group-item">Usted puede ingresar notas enteras como decimales</li>
+							    <li class="list-group-item">En caso el alumno se haya retirado del grupo/curso completar con el valor de 0</li>
+							    <li class="list-group-item">No machuque el boton GUARDAR NOTAS hasta que haya terminado de ingresar las notas de todos los alumnos </li>
+							    <li class="list-group-item">Cuando finalice de ingresar las notas dar clic en GUARDAR NOTAS</li>
+							    <li class="list-group-item">Confirme su accion con el botón continuar</li>
+							    <li class="list-group-item">Si no esta seguro presione Cancerlar para hacer alguna modificació</li>						    
+							    <li class="list-group-item">Una vez ingresado la nota usted no podra modificar las notas, tendra que hacer clic en el boton de Solicitar cambios para que la oficina encargada en su facultad solicite el cambio</li>
+							  </ul>
+							</div>
+		    </div>
+	    	
+			<div class="col-sm-7">
 					<div class="panel-body">
 				     <table class="table table-bordered">
 		                  <tr class="info">
@@ -98,13 +95,12 @@
 		                  </tr>
                 	</table> 
 
-<?php require 'confirmacion.js' ?>
 <?php 
 		
 	
       //  $iterador=0;
     
-		$conex2->preparar("SELECT m.codigo_alumno, CONCAT(a.apellido_paterno,' ',a.apellido_materno,' ',a.nombre_alumno), n.codigo_nota  FROM matricula m , alumno a, nota n WHERE n.codigo_curso='$curso_m' and m.codigo_turno='$turno_m' and m.codigo_alumno=a.codigo_alumno and n.codigo_alumno=m.codigo_alumno and m.codigo_docente='$codigo_profe' ORDER BY a.apellido_paterno");
+		$conex2->preparar("SELECT m.codigo_alumno, CONCAT(a.apellido_paterno,' ',a.apellido_materno,' ',a.nombre_alumno), n.codigo_nota FROM matricula m , alumno a, nota n WHERE n.codigo_curso='$curso_m' and m.codigo_turno='$turno_m' and m.codigo_alumno=a.codigo_alumno and n.codigo_alumno=m.codigo_alumno and m.codigo_docente='$codigo_profe' ORDER BY a.apellido_paterno");
 		$conex2->ejecutar();
 		$conex2->prep()->bind_result($cod_alum1,$nombre_alum1, $codigo_nota1);
 
@@ -121,7 +117,7 @@
 								 		 			</tr>
 								 		 		 <tbody>
 								 		 	  ";
-	    echo "<form name='formAjax' action='probando.php' method='POST' id= 'formAjax' onsubmit='prueba('nota')'>";	
+	    echo "<form name='formAjax' action='probando.php' method='POST' id= 'formAjax' > " ;	
 		
 	    
 	    echo "<div id='dialogoFormulario' title='Atención' style='display:none;'>
@@ -136,6 +132,7 @@
 				  <tr>
 				  		 <td>$cod_alum1</td>
 						 <td>$nombre_alum1</td>
+
 						 <td> <input type='number' name='tipo_examen[]' disabled> </td>
 				  </tr>
 
@@ -148,7 +145,7 @@
 				  		 <td>$cod_alum1</td>
 						 <td>$nombre_alum1</td>
 						 
-						 <td> <input type='number' name='tipo_examen[]' id=nota min=0 max= 20 required> 
+						 <td> <input type='number' name='tipo_examen[]' id=nota min=0 max= 20 step='any' size='2' required> 
 						 	<span></span>
 						 </td>
 
@@ -170,12 +167,11 @@
 		  //array_push($array,"ex_parcial");
 		
 		}
-			echo "Se cargaron ".$i." registros";
+			echo " <div align='center'> <strong> Se cargaron ".$i." alumnos <strong> </div>";
 		//$_SESSION['array'] = $array;
 	          
 		echo " </tbody>
 	           </table>";
-        
         if($var==1){
         					echo "<div class='alert alert-warning'>
 								  <h4 href='#'' class='alert-danger' align='center'> Usted ya registro nota aca </h4>
@@ -211,11 +207,14 @@
          $conex2->cerrar_conex();
 	   ?>
 
-			 		</div>
-				</div>    	 		</div>
+			
 
+        </div>
 
-			</div>
+		
+
+   </div>
+</div>
 
 <?php
  require 'inc/footer.inc'; ?>

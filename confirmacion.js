@@ -16,6 +16,7 @@ $(document).ready(function(){
 		buttons: {
 			"Continuar": function() {
 				// Cerramos el diálogo
+				
 				document.formAjax.submit();		
 			},
 			'Cancelar': function() {
