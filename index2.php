@@ -1,4 +1,5 @@
-<?php require 'inc/cabecera.inc'; ?>
+<?php require 'inc/cabecera.inc';
+	   ?>
 			<div class="container-fluid">
 				    <div class="row">
 				    	 <div class="col-md-12 text-center">
@@ -31,10 +32,10 @@
 						 		    require 'Database.php';
 
 						 		   $conex= new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-						 		   $validar_alumno=$conex->validar_datos('codigo_alumno','matricula',$codigo);
+						 		   $validar_alumno=$conex->validar_datos('codigo_alumno','alumno',$codigo);
 
 
-						 		   if($validar_alumno >=1){
+						 		   if($validar_alumno ==1){
 
 						 		   			$conex->preparar("SELECT apellido_paterno, apellido_materno, nombre_alumno from alumno  WHERE codigo_alumno='$codigo'");
 						 		   			$conex->ejecutar();
@@ -99,4 +100,20 @@
 						</div>
 						</div>
 					</div>
-<?php require 'inc/footer.inc'; ?>
+
+<?php 
+	
+	require_once ("dompdf/dompdf_config.inc.php");
+	$codigoHTML=null;
+	$codigoHTML= utf8_decode($codigoHTML);
+	$dompdf= new DOMPDF();
+	$dompdf->load_html($codigoHTML);
+	ini_set("memory_limit","128M");
+	$dompdf->render();
+	$dompdf->stream("Reporte_Notas_Alumnos_2017-1");
+
+	require 'inc/footer.inc'; 
+?>
+
+
+

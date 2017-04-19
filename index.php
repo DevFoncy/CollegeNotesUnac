@@ -52,8 +52,8 @@
 						 		   			$conex->ejecutar();
 						 		 			$conex->prep()->bind_result($cod,$ap,$n);
 						 		 			while($conex->resultado()){
-						 		 				echo "Codigo del Profesor : ".$cod."<br>";
-						 		 				echo "Bienvenido Profesor :".$ap." ".$n;
+						 		 				//echo "Codigo del Profesor : ".$cod."<br>";
+						 		 				echo "<strong>Bienvenido Profesor :".$ap." ".$n."</strong>";
 						 		 			}
 
 						 		   			$conex->preparar("SELECT p.codigo_curso, p.codigo_turno, c.nombre_curso  from profesor_curso p, curso c  WHERE p.codigo_profesor=$codigo and c.codigo_curso=p.codigo_curso");
