@@ -103,7 +103,7 @@
 
 <?php 
 	
-	require_once ("dompdf/dompdf_config.inc.php");
+	/*require_once ("dompdf/dompdf_config.inc.php");
 	$codigoHTML=null;
 	$codigoHTML= utf8_decode($codigoHTML);
 	$dompdf= new DOMPDF();
@@ -111,7 +111,7 @@
 	ini_set("memory_limit","128M");
 	$dompdf->render();
 	$dompdf->stream("Reporte_Notas_Alumnos_2017-1");
-
+ */
 	require 'inc/footer.inc'; 
 ?>
 

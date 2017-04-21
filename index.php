@@ -1,20 +1,20 @@
 <?php require 'inc/cabecera.inc'; ?>
 			<div class="container-fluid">
 				    <div class="row">
-				    	 <div class="col-md-12 text-center">
+				    	 <div class="col-sm-12 text-center">
 				    	 	<div align="center" class="alert alert-info">
                 			<h1 class="text-info"> <strong>BIENVENIDO AL SISTEMA DE REGISTRO DE NOTAS</strong> </h1>
                 			<div class="row">
 
-                			<div class="col-md-3">  <img src="img/captura.png" width="200" height="120" > </div>
-                			<div class="col-md-2 col-md-offset-2">  <img src="img/alumno.png" width="120" height="120" > </div>
-                			<div class="col-md-2 col-md-offset-1 ">  <img src="img/logo.png" width="400" height="120" > </div>
+                			<div class="col-sm-3">  <img src="img/captura.png" width="200" height="120" > </div>
+                			<div class="col-sm-2 col-lg-offset-2">  <img src="img/alumno.png" width="120" height="120" > </div>
+                			<div class="col-sm-2 col-lg-offset-1 ">  <img src="img/logo.png" width="400" height="120" > </div>
 				    	 	</div>
 
 				    	 </div>
 				    </div>
 				    <div class="row">
-				        <div class="col-md-4 col-md-offset-1">
+				        <div class="col-lg-4 col-lg-offset-1">
 				        	<div class="panel panel-default">
 							  <div class="alert alert-danger"><strong> INSTRUCCIONES </strong></div>
 							  <div class="panel-body">
@@ -27,14 +27,14 @@
 							</div>
 				        </div>
 
-						<div class="col-md-6"> 
+						<div class="col-lg-6"> 
 							<div class="panel panel-default">
 
 
 
 						 		 <?php 
 						 		 session_start();
-						 		  $codigo=$_SESSION['codigo'];			
+						 		 $codigo=$_SESSION['codigo'];			
 						 		 $iterador=0;
 
 						 		 	$ok=false;
@@ -66,7 +66,7 @@
 								 		 					<td class='info'> <strong>Turno del curso</strong></td>								 		 					
 								 		 					<td class='info'> <strong>nombre del curso</strong></td>
 								 		 					<td class='info' ><strong> Tipo de examen </strong></td>
-								 		 					<td class='info'><strong> Acción </strong></td>
+								 		 					<td align='center'class='info'colspan=2 ><strong> Acción </strong></td>
 								 		 			</tr>
 								 		 		 <tbody>
 								 		 	  ";
@@ -79,7 +79,7 @@
 								 		 			<td>$curso_1 <input type='text' name='curso' value='$curso_1' hidden></td>
 								 		 			<td>$turno_1<input type='text'name='turno' value='$turno_1' hidden></td>
 								 		 			<td>$nombre_1<input type='text'name='nombre' value='$nombre_1' hidden></td>
-								 		 			<input type='text' name='cod_profe' value = '$codigo' hidden>
+								 		 			<input type='text' name='cod_profe' value='$codigo' hidden>
 								 		 			<td>
 								 		 			<select name='sel'>
 								 		 			<option value='ep'>Parcial</option>
@@ -95,11 +95,17 @@
 
 								 		 			<td>
 								 		 			  <button type='submit' class='btn btn-primary'>Registrar</button>
-								 		 			</td
-								 		 			
-								 		 		  </tr>
+								 		 			</td>
 								 		 		  </form>"
 								 		 		  ;
+								 		 		  echo "<td>
+								 		             <form name='form".$iterador."' action='consulta.php' method='POST' role='form' enctype='multipart/form-data'>
+								 		 		      <input type='text' name='curso' value='$curso_1' hidden>
+													  <input type='text'name='turno' value='$turno_1' hidden>
+								 		 			  <button type='submit' class='btn btn-primary'>Consulta de Notas</button>
+								 		 			</td>
+								 		 			</tr>
+								 		 			</form>";
 
 						 		 }
 

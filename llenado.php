@@ -70,7 +70,7 @@
 
 <div class="container-fluid">
 	    <div class="row">
-	    	<div class="col-md-4">
+	    	<div class="col-lg-4">
 				        	<div class="panel panel-default">
 							  <div class="alert alert-danger" align="center"><strong>INDICACIONES</strong></div>
 							 
