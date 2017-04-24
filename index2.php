@@ -41,8 +41,15 @@
 						 		   			$conex->ejecutar();
 						 		 			$conex->prep()->bind_result($app,$apm,$n);
 						 		 			while($conex->resultado()){
-						 		 				echo "Bienvenido Alumno : ".$app." ".$apm." ".$n;
+						 		 				echo "<strong> Alumno : ".$app." ".$apm." ".$n."</strong>";
 						 		 			}
+						 		 			$nombre_completo=$app." ".$apm." ".$n;
+						 		 		
+						 		 			echo "<form action='generar_alumno.php' method='POST' role='form' enctype='multipart/form-data'>
+									 			  <input type='text' name='codigo_alumno' value='$codigo' hidden >	
+									 			  <input type='text' name='nombre_completo' value='$nombre_completo' hidden >			 
+							 		 			  <button type='submit' class='pull-right'> <span class='glyphicon glyphicon-print'></span> Reporte en PDF</button>
+											 	</form>";
 						 		   			$conex->preparar("SELECT n.ex_parcial, n.ex_final,n.pc1,n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti, c.nombre_curso  from nota n, curso c  WHERE n.codigo_alumno='$codigo' and c.codigo_curso=n.codigo_curso");
 						 		   			$conex->ejecutar();
 						 		   			$conex->prep()->bind_result($ex_p,$ex_f,$pc1,$pc2,$pc3,$pc4,$labo,$susti,$name);

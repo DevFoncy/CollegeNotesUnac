@@ -18,8 +18,10 @@
 				        	<div class="panel panel-default">
 							  <div class="alert alert-danger"><strong> INSTRUCCIONES </strong></div>
 							  <div class="panel-body">
-							    <p>A continuación le presentamos una lista de todos los cursos que usted dicta diferenciado por sus grupos. 
+							    <p class="text-justify" >A continuación le presentamos una lista de todos los cursos que usted dicta diferenciado por sus grupos. 
 							       Por favor escoja el tipo de examen a llenar y seguidamente darle CLIC en la opción REGISTRAR
+							    </p>
+							    <p class="text-justify" >En tipo de Examen encontrará categorias definidas y si en caso usted tenga mas de un laboratorio considerar en la nota de laboratorio con un Promedio Ponderado, si usted no tome alguna de esas pruebas no llenarla. Por el momento puede registrar las notas que estan definidas.
 							    </p>
 							  </div>
 							 

@@ -110,7 +110,10 @@
 		
 	
       //  $iterador=0;
-    
+
+	
+	
+ 
 		$conex2->preparar("SELECT m.codigo_alumno, CONCAT(a.apellido_paterno,' ',a.apellido_materno,' ',a.nombre_alumno), n.codigo_nota, n.$name_tipo FROM matricula m , alumno a, nota n WHERE n.codigo_curso='$curso_m' and m.codigo_turno='$turno_m' and m.codigo_alumno=a.codigo_alumno and n.codigo_alumno=m.codigo_alumno and m.codigo_docente='$codigo_profe' ORDER BY a.apellido_paterno");
 		$conex2->ejecutar();
 		$conex2->prep()->bind_result($cod_alum1,$nombre_alum1, $codigo_nota1,$nota);
@@ -178,7 +181,7 @@
 		  //array_push($array,"ex_parcial");
 		
 		}
-			echo " <div align='center'> <strong> Se cargaron ".$i." alumnos <strong> </div>";
+			echo " <div align='center'> <strong> Usted puede registrar nota de  ".$i." alumnos <strong> </div>";
 		//$_SESSION['array'] = $array;
 	          
 		echo " </tbody>

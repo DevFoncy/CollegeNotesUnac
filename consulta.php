@@ -1,49 +1,49 @@
 <?php require 'inc/cabecera.inc';
 	  require 'conexion.php';
 	  require 'Database.php';
+	  session_start();
+				 		  		
+		header('Cache-Control: no cache');
+		$codigo_teacher=$_SESSION['codigo'];
+						 
+		$curso_m = $_POST['curso'];
+		$turno_m = $_POST['turno'];	
 	
 	   ?>
 			<div class="container-fluid">
 				    <div class="row">
-				    	 <div class="col-lg-12 text-center">
+				    	 <div class="col-md-12 text-center">
 				    	 	<div align="center" class="alert alert-info">
                 			<h1 class="text-info"> <strong>BIENVENIDO AL SISTEMA DE CONSULTA DE NOTAS</strong> </h1>
                 			<div class="row">
 
-                			<div class="col-lg-3">  <img src="img/captura.png" width="200" height="120" > </div>
-                			<div class="col-lg-2 col-lg-offset-2">  <img src="img/alumno.png" width="120" height="120" > </div>
-                			<div class="col-lg-2 col-lg-offset-1 ">  <img src="img/logo.png" width="400" height="120" > </div>
+                			<div class="col-md-3">  <img src="img/captura.png" width="200" height="120" > </div>
+                			<div class="col-md-2 col-md-offset-2">  <img src="img/alumno.png" width="120" height="120" > </div>
+                			<div class="col-md-2 col-md-offset-1 ">  <img src="img/logo.png" width="400" height="120" > </div>
 				    	 	</div>
 
 				    	 </div>
 				    </div>
 				    <div class="row">
-
-						<div class="col-lg-10 col-lg-offset-1"> 
+						<div class="col-md-10 col-md-offset-1"> 
 							<div class="panel panel-default">
-				 		  <?php 
-				 		  		session_start();
-				 		  		
-				 		  		header('Cache-Control: no cache');
-						 		$codigo_teacher=$_SESSION['codigo'];
-						 
-								$curso_m = $_POST['curso'];
-								$turno_m = $_POST['turno'];	
-						
-								$conex3= new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
-								$conex3->preparar("SELECT c.nombre_curso, p.apellido_profesor, p.nombre_profesor, f.nombre from curso c, profesor p,facultad f  WHERE c.codigo_curso='$curso_m' and p.codigo_profesor='$codigo_teacher' and f.codigo_facultad=c.codigo_facultad");
-						 		   			$conex3->ejecutar();
-						 		 			$conex3->prep()->bind_result($course, $ap, $na, $facu);
-						 		 			while($conex3->resultado()){
+<?php 		
+								$conex6= new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+								$conex6->preparar("SELECT c.nombre_curso, p.apellido_profesor, p.nombre_profesor, f.nombre from curso c, profesor p,facultad f  WHERE c.codigo_curso='$curso_m' and p.codigo_profesor='$codigo_teacher' and f.codigo_facultad=c.codigo_facultad");
+						 		   			$conex6->ejecutar();
+						 		 			$conex6->prep()->bind_result($course, $ap, $na, $facu);
+						 		 			while($conex6->resultado()){
 						 		 				echo "<strong> FACULTAD   : ".$facu."<br>";
 						 		 				echo "<strong> CURSO   : ".$course."<br>";
 						 		 				echo "PROFESOR: ".$ap." ".$na;
 						 		 	}
 						 		 	echo "<br> TURNO:".$turno_m."</strong>";
+						 		 echo "<br><div class='col-md-6 col-md-offset-3' >";
+						 		 echo "<div class='alert alert-warning'> Nota : el simbolo ? significa que usted no ha registrado nota en ese casillero </div> </div>";
 								
-								$conex3->preparar("SELECT a.codigo_alumno ,CONCAT(a.apellido_paterno,' ', a.apellido_materno), a.nombre_alumno, n.ex_parcial, n.ex_final,n.pc1,n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti FROM alumno a, nota n  WHERE n.codigo_alumno =a.codigo_alumno and n.codigo_curso='$curso_m' and n.codigo_turno='$turno_m' ORDER BY a.apellido_paterno");
-								$conex3->ejecutar();
-								$conex3->prep()->bind_result($cod_a, $ap1, $nom,$ex_p,$ex_f,$pc1,$pc2,$pc3,$pc4,$labo,$susti);
+								$conex6->preparar("SELECT a.codigo_alumno ,CONCAT(a.apellido_paterno,' ', a.apellido_materno), a.nombre_alumno, n.ex_parcial, n.ex_final,n.pc1,n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti FROM alumno a, nota n  WHERE n.codigo_alumno =a.codigo_alumno and n.codigo_curso='$curso_m' and n.codigo_turno='$turno_m' ORDER BY a.apellido_paterno");
+								$conex6->ejecutar();
+								$conex6->prep()->bind_result($cod_a, $ap1, $nom,$ex_p,$ex_f,$pc1,$pc2,$pc3,$pc4,$labo,$susti);
 
 								echo "<table class='table table-cell'
 								 		 		<thead>
@@ -63,9 +63,8 @@
 								 		 		 <tbody>
 								 		 	  ";
 
-								 		 	 $var= $conex3->resultado();
 								 		 	
-						 		 			while($conex3->resultado()){
+						 		 			while($conex6->resultado()){
 						 		 		
 						 		 				echo "
 						 		 					
@@ -111,3 +110,7 @@
 						</div>
 						</div>
 					</div>
+
+<?php
+ require 'inc/footer.inc'; ?>
+	

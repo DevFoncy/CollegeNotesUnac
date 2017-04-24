@@ -1,13 +1,11 @@
-
-
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html charset=utf-8"/>
 	
 		<title> Portal </title>
-	  	<link rel="stylesheet" href="css/bootstrap.min.css" media="screen">
-	  	<link rel="stylesheet" href="css/estilos.css" media="screen" >
+	  	<link rel="stylesheet" href="css/bootstrap.min.css">
+	  	
 
         <link href="css/ui-darkness/jquery-ui-1.8.16.custom.css" rel="stylesheet" media="screen">
 	  	<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
