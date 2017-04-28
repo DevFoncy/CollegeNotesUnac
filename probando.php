@@ -17,68 +17,85 @@
 				    $codigo_profe = $_POST['codigo_profe']; 
 					$codigo_turno = $_POST['codigo_turno'];
 					$codigo_curso = $_POST['codigo_curso'];
-				     
+					$codigo_facultad= $_POST['codigo_facultad'];
+				 
 				    //$name_tipo= "ex_parcial";	
 				    //echo $tipo_examen1 ."<br>";
 				    //echo $codigo_profe."<br>";
 					//echo $codigo_turno."<br>";
 					//echo $codigo_curso."<br>";
-		    
-				    foreach($tipo_examen as $codigo){				    				    
-				   if($codigo<0 || $codigo>20){
-				   		echo "<div class='alert alert-success' align='center' >
- 								 <a href='#' class='alert-warning'> <strong> Hubo un error al ingresar las notas intentalo nuevamente. Seras redirigido a la pagina inicial en 3 segundos</strong></a> <br></br>
- 								 <img src='img/warning.jpg' width='30' height='30'>
-								</div>";
-				   		header("Refresh:3; url=index.php");
-				   		$aviso=true;
-				   	}
+		           // var_dump($tipo_examen);
+				   foreach($tipo_examen as $codigo){	
+					    					    
+				  if(($codigo<-1 || $codigo>20) || $codigo==""){
+				      echo "<div class='alert alert-success' align='center' >
+ 					 		<a href='#' class='alert-warning'> <strong> Hubo un error al ingresar las notas intentalo nuevamente. Seras redirigido a la pagina inicial en 3 segundos</strong></a> <br></br>
+ 			 				<img src='img/warning.jpg' width='30' height='30'>
+				 		</div>";
+				  		header("Refresh:3; url=index.php");
+				  		$aviso=true;
+				  	}
+				  }
+		
+				 if($aviso==false){
+					   $size = count ($tipo_examen);	// cantidad de notas de	
+		    		   $conex3= new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 
-				   }
 
-				   if($aviso==false){
+					   for( $i=0;  $i< $size; $i++){
+					     	
+					      if($codigo_facultad==101){
+					      	     if($tipo_examen[$i]==-1){
+					      	     	$var= $conex3->preparar("UPDATE nota SET $tipo_examen1='NSP' WHERE codigo_nota=$codigo_nota[$i]");
+					      	     }
+					      	     else{
+					      	     	$var= $conex3->preparar("UPDATE nota SET $tipo_examen1=$tipo_examen[$i] WHERE codigo_nota=$codigo_nota[$i]");
+					      	     }
+					    		 
+					      }
+					      if($codigo_facultad==102){
+					      		if($tipo_examen[$i]==-1){
+					      	     	$var= $conex3->preparar("UPDATE nota SET $tipo_examen1='NSP' WHERE codigo_nota=$codigo_nota[$i]");
+					      	     }
+					      	     else{
+					      		 $var= $conex3->preparar("UPDATE nota_fca SET $tipo_examen1=$tipo_examen[$i] WHERE codigo_nota=$codigo_nota[$i]");
+					      		}
+					      }
+					      
+					      if($var==false){
+					      		echo "<div class='alert alert-success' align='center' >
+	 							 <a href='#' class='alert-danger'><strong> Hubo un error al ingresar las notas intentalo nuevamente. Seras redirigido a la pagina inicial en 3 segundos </strong></a>
+	 							 <br></br>
+	 							 <img src='img/warning.jpg' width='30' height='30'>
+					 		</div>";
+				
+					      		header("Refresh:3; url=index.php");
+					       		
+					      }
+					      else{
+					      	echo "<div class='alert alert-success' align='center' >
+	 							 <a href='#' class='alert-info'> <strong> Has ingresado con exito las notas .Seras redirigido a la pagina inicial en 3 segundos </strong> </a> <br></br>
+	 			 			 <img src='img/check.png' width='30' height='30'> 
+					 	</div>";
+					 $conex3->ejecutar();
+					 	header("Refresh:5; url=index.php");
+					    
 
-				  //  print_r($ex_parcial1[1]);
-				    $size = count ($tipo_examen);
-				    //echo "<br>".$size;					
-	    		    $conex3= new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+					      	}
+					   }
 
-				    for( $i=0;  $i< $size; $i++){
-				       //$conex3->preparar("REPLACE INTO nota(codigo_nota, $name_tipo) VALUES ($codigo_nota[$i],$ex_parcial1[$i])");	
-				       $var= $conex3->preparar("UPDATE nota SET $tipo_examen1=$tipo_examen[$i] WHERE codigo_nota=$codigo_nota[$i]");
-				       if($var==false){
-				       		echo "<div class='alert alert-success' align='center' >
- 								 <a href='#' class='alert-danger'><strong> Hubo un error al ingresar las notas intentalo nuevamente. Seras redirigido a la pagina inicial en 3 segundos </strong></a>
- 								 <br></br>
- 								 <img src='img/warning.jpg' width='30' height='30'>
-								</div>";
-			
-				       		header("Refresh:3; url=index.php");
-				       		
-				       }
-				       else{
-				       	echo "<div class='alert alert-success' align='center' >
- 								 <a href='#' class='alert-info'> <strong> Has ingresado con exito las notas .Seras redirigido a la pagina inicial en 3 segundos </strong> </a> <br></br>
- 								 <img src='img/check.png' width='30' height='30'> 
-								</div>";
-							header("Refresh:5; url=index.php");
-				       	$conex3->ejecutar();
+					   	if($var!=false){
+					   	 $conex3->preparar("UPDATE profesor_curso SET $tipo_examen1=1 WHERE codigo_curso='$codigo_curso' and codigo_profesor='$codigo_profe' and codigo_turno= '$codigo_turno'");
+					    	
+					   	$conex3->ejecutar();
+					   	header("Refresh:1; url=index.php"); }
 
-				       	}
-				    }
-				    //echo "ingresado";
-
-				     //segundo update
-				    	if($var!=false){
-				    	 $conex3->preparar("UPDATE profesor_curso SET $tipo_examen1=1 WHERE codigo_curso='$codigo_curso' and codigo_profesor='$codigo_profe' and codigo_turno= '$codigo_turno'");
-				    	
-				    	$conex3->ejecutar();
-				    	header("Refresh:1; url=index.php"); }
-
-				    }
+				  }
 
  ?>
 
 </div></div></div>
 
-<?php require 'inc/footer.inc'; ?>
+<?php require 'inc/footer.inc'; 
+
+        //RewriteRule ^fime/otic/(.*).html?$  prueba.html [NC,L]  ?>

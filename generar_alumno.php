@@ -5,21 +5,20 @@
 	session_start();
 	$codigo_alumno= $_POST['codigo_alumno'];
 	$nombre= $_POST['nombre_completo'];
+	$codigo_facultad = $_POST['codigo_facultad'];
+	$nombre_facultad = $_POST['nombre_facultad'];
 
 	class PDF extends FPDF
 			{
 			function Header()
 			{
-			    global $title;
 
 				$this->SetFont('Arial','B',20);
 				    // Movernos a la derecha
 				    // $this->Cell(80);
 				    // Título
-				    $this->Cell(0,8,'Universidad Nacional del Callao',0,2,'C');
+				    $this->Cell(0,5,'Universidad Nacional del Callao',0,2,'C');
 					$this->SetFont('Arial','B',15);
-					$this->Cell(0,8,utf8_decode('Facultad de Ingeniería Mecánica y de Energía'),0,2,'C');
-					$this->Cell(0,1,'_______________________________________________________________',0,2,'C');
 					$this->Image('img/unac.png',10,10,-300);
 					// Salto de línea
 				    $this->Ln(10);
@@ -45,7 +44,7 @@
 			    // Color de fondo
 			    $this->SetFillColor(200,220,255);
 			    // Título
-			    $this->Cell(0,2,"$tipo : $tittle",0,1,'L',false);
+			    $this->Cell(0,5,"$tipo : $tittle",0,1,'L',false);
 			    // Salto de línea
 			    $this->Ln(4);
 			}
@@ -62,19 +61,23 @@
 			//$conex4= new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 
 			$pdf = new PDF();
-		
-			$title = "REPORTE DE NOTAS DE ALUMNOS CICLO 2017-I";
 			$pdf->AddPage();
-			$pdf->SetTitle($title);
-			
-			//pdf->PrintChapter("FACULTAD",$nombre_facultad,'20k_c1.txt');
+			$pdf->Cell(0,5,utf8_decode("FACULTAD DE ".$nombre_facultad),0,2,'C');
+			$pdf->Cell(0,1,'________________________________________________________________',0,2,'C');
+			$pdf->Ln(4);
 			$pdf->PrintChapter("ALUMNO",$nombre,'20k_c1.txt');
-	
-
+			$pdf->PrintChapter("CODIGO",$codigo_alumno,'20k_c1.txt');
 			$sql=mysql_connect(DB_HOST,DB_USER,DB_PASS);
 			mysql_select_db("nota_fime", $sql);
-			$codigo='';
-			$sql= mysql_query("SELECT n.ex_parcial, n.ex_final,n.pc1,n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti, c.nombre_curso  from nota n, curso c  WHERE n.codigo_alumno='$codigo_alumno' and c.codigo_curso=n.codigo_curso");
+
+		
+			if($codigo_facultad==101){
+					
+				$sql= mysql_query("SELECT n.ex_parcial, n.ex_final,n.pc1,n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti, c.nombre_curso  from nota n, curso c  WHERE n.codigo_alumno='$codigo_alumno' and c.codigo_curso=n.codigo_curso");
+				}
+				if($codigo_facultad==102){
+				$sql= mysql_query("SELECT n.ex_parcial, n.ex_final,n.pc1,n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti, c.nombre_curso  from nota_fca n, curso c, matricula_fca m  WHERE m.codigo_alumno='$codigo_alumno' and c.codigo_curso=m.codigo_curso and m.codigo_matricula=n.codigo_matricula ");					
+				}
 
 			$pdf->Cell(2);
 			$pdf->SetFont('Arial','B',8);

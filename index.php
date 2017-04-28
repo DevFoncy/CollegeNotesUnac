@@ -31,12 +31,10 @@
 
 						<div class="col-lg-6"> 
 							<div class="panel panel-default">
-
-
-
 						 		 <?php 
 						 		 session_start();
-						 		 $codigo=$_SESSION['codigo'];			
+						 		 $codigo=$_SESSION['codigo'];	
+						 		 if($_SESSION['undefined']){		
 						 		 $iterador=0;
 
 						 		 	$ok=false;
@@ -50,12 +48,15 @@
 
 						 		   if($validar_profe ==1){
 
-						 		   			$conex->preparar("SELECT codigo_profesor, apellido_profesor, nombre_profesor from profesor WHERE codigo_profesor='$codigo'");
+						 		   			$conex->preparar("SELECT p.codigo_profesor, p.apellido_profesor, p.nombre_profesor, f.nombre, f.codigo_facultad from profesor p, facultad f WHERE p.codigo_profesor='$codigo' and p.facultad=f.codigo_facultad");
 						 		   			$conex->ejecutar();
-						 		 			$conex->prep()->bind_result($cod,$ap,$n);
+						 		 			$conex->prep()->bind_result($cod,$ap,$n,$nombre_facu,$codigo_f);
 						 		 			while($conex->resultado()){
 						 		 				//echo "Codigo del Profesor : ".$cod."<br>";
-						 		 				echo "<strong>Bienvenido Profesor :".$ap." ".$n."</strong>";
+						 		 				echo "<strong> FACULTAD DE ".$nombre_facu."</strong> <br>";
+						 		 				echo "<strong>PROFESOR :".$ap." ".$n."</strong>";
+
+
 						 		 			}
 
 						 		   			$conex->preparar("SELECT p.codigo_curso, p.codigo_turno, c.nombre_curso  from profesor_curso p, curso c  WHERE p.codigo_profesor=$codigo and c.codigo_curso=p.codigo_curso");
@@ -81,6 +82,8 @@
 								 		 			<td>$curso_1 <input type='text' name='curso' value='$curso_1' hidden></td>
 								 		 			<td>$turno_1<input type='text'name='turno' value='$turno_1' hidden></td>
 								 		 			<td>$nombre_1<input type='text'name='nombre' value='$nombre_1' hidden></td>
+
+								 		 		    <input type='text' name='codigo_facultad' value='$codigo_f' hidden></td>
 								 		 			<input type='text' name='cod_profe' value='$codigo' hidden>
 								 		 			<td>
 								 		 			<select name='sel'>
@@ -120,6 +123,10 @@
 						 		   			echo "usted no pertenece , fuera";
 						 		   }
 
+						 		   }
+						 		   else{
+						 		   	   echo "Usted no ha iniciado sesion en moodle";
+						 		   }
 					
 						 		  ?>
 

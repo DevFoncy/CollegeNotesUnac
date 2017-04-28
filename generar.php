@@ -11,25 +11,22 @@
 	$nombre_profe = $_POST['nombre'];	
 	$turno = $_POST['turno'];	
 	$codigo_cur=$_POST['codigo_curso1'];
-
+	$codigo_facultad=$_POST['codigo_facu'];
 	$nombre_completo= $apellido_profe." ".$nombre_profe; 
 
 	class PDF extends FPDF
 			{
 			function Header()
 			{
-			    global $title;
 
-				$this->SetFont('Arial','B',20);
+				    $this->SetFont('Arial','B',20);
 				    // Movernos a la derecha
 				    // $this->Cell(80);
 				    // Título
 				    $this->Cell(0,8,'Universidad Nacional del Callao',0,2,'C');
 					$this->SetFont('Arial','B',15);
-					$this->Cell(0,8,utf8_decode('Facultad de Ingeniería Mecánica y de Energía'),0,2,'C');
-					$this->Cell(0,1,'________________________________________________________________',0,2,'C');
 					// Salto de línea
-				    $this->Ln(10);
+				    $this->Ln(5);
 			}
 
 			function Footer()
@@ -41,7 +38,7 @@
 			    // Color del texto en gris
 			    $this->SetTextColor(128);
 			    // Número de página
-			    $this->Cell(0,10,'Pagina '.$this->PageNo(),0,0,'C');
+			    $this->Cell(0,10,utf8_decode('Página').$this->PageNo(),0,0,'C');
 			    $this->Cell(0,10,date('d/m/Y'),0,0,'R');
 			}
 
@@ -52,7 +49,7 @@
 			    // Color de fondo
 			    $this->SetFillColor(200,220,255);
 			    // Título
-			    $this->Cell(0,2,"$tipo : $tittle",0,1,'L',false);
+			    $this->Cell(0,3,"$tipo : $tittle",0,1,'L',false);
 			    // Salto de línea
 			    $this->Ln(4);
 			}
@@ -70,11 +67,13 @@
 
 			$pdf = new PDF();
 		
-			$title = "REPORTE DE NOTAS DE ALUMNOS CICLO 2017-I";
-				$pdf->AddPage();
-			$pdf->SetTitle($title);
 			
+			$pdf->AddPage();
+			
+			$pdf->Cell(0,5,utf8_decode("FACULTAD DE ".$nombre_facultad),0,2,'C');
+			$pdf->Cell(0,1,'________________________________________________________________',0,2,'C');
 			//pdf->PrintChapter("FACULTAD",$nombre_facultad,'20k_c1.txt');
+			$pdf->Ln(4);
 			$pdf->PrintChapter("PROFESOR",$nombre_completo,'20k_c1.txt');
 			$pdf->PrintChapter("CURSO",$nombre_curso,'20k_c1.txt');
 			$pdf->PrintChapter("TURNO",$turno,'20k_c1.txt');
@@ -82,8 +81,16 @@
 			$sql=mysql_connect(DB_HOST,DB_USER,DB_PASS);
 			mysql_select_db("nota_fime", $sql);
 			$n=0;
-			$codigo='';
-			$sql= mysql_query("SELECT a.codigo_alumno ,CONCAT(a.apellido_paterno,' ', a.apellido_materno) as APELLIDO, a.nombre_alumno, n.ex_parcial, n.ex_final,n. pc1, n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti FROM alumno a, nota n  WHERE n.codigo_alumno =a.codigo_alumno and n.codigo_curso='$codigo_cur' and n.codigo_turno='$turno' ORDER BY a.apellido_paterno");
+
+			if($codigo_facultad==101){
+					$sql= mysql_query("SELECT a.codigo_alumno ,CONCAT(a.apellido_paterno,' ', a.apellido_materno) as APELLIDO, a.nombre_alumno, n.ex_parcial, n.ex_final,n. pc1, n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti FROM alumno a, nota n  WHERE n.codigo_alumno =a.codigo_alumno and n.codigo_curso='$codigo_cur' and n.codigo_turno='$turno' ORDER BY a.apellido_paterno");
+
+			}
+			if($codigo_facultad==102){
+					$sql= mysql_query("SELECT a.codigo_alumno ,CONCAT(a.apellido_paterno,' ', a.apellido_materno) as APELLIDO, a.nombre_alumno, n.ex_parcial, n.ex_final,n.pc1,n.pc2,n.pc3,n.pc4,n.laboratorio,n.susti FROM alumno_fca a, nota_fca n , matricula_fca m WHERE n.codigo_matricula=m.codigo_matricula and m.codigo_curso='$codigo_cur' and m.codigo_turno='$turno' and m.codigo_alumno = a.codigo_alumno ORDER BY a.apellido_paterno");
+
+			}
+			
 
 			$pdf->Cell(2);
 			$pdf->SetFont('Arial','B',8);
