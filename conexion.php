@@ -7,7 +7,7 @@
 
   define('DB_PASS','');
 
-  define('DB_NAME','nota_fime');
+  define('DB_NAME','notas_v2');
 
   define('DB_CHARSET','utf8');
 
