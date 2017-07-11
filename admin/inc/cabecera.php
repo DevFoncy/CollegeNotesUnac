@@ -8,6 +8,7 @@
 	
 		<title> Módulo administrador</title>
 	  	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	  	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	  	
 	  	<script src="../alertas/dist/sweetalert.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="../alertas/dist/sweetalert.css">	

@@ -1,0 +1,14 @@
+button[id="boton_cambio"]{
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+button[id="boton_cambio"]:hover{
+	 background-color: white; 
+    color: black; 
+    border: 1px solid #4CAF50;
+}
+input[class="input_corto"]{
+	width: 63px;
+	text-align: center;
+	background-color: #DCF5BF;
+}

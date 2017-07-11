@@ -1,31 +1,22 @@
-<?php require 'inc/cabecera.inc';
-	  require 'conexion.php';
-	  require 'Database.php';
-	  session_start();
-				 		  		
-		header('Cache-Control: no cache');
-
-	
-
-		$codigo_teacher=$_SESSION['codigo'];
-						 
-		$curso_m = $_POST['curso'];
-		$turno_m = $_POST['turno'];	
+<?php require 'inc/cabecera.php';		
+		$codigo_teacher=$_POST['codigo_profe'];						 
+		$curso_m = $_POST['codigo_curso'];
+		$turno_m = $_POST['codigo_turno'];	
 	
 	   ?>
 			<div class="container-fluid">
 				    <div class="row">
-				    	 <div class="col-md-12 text-center">
+				    	  <div class="col-sm-12 text-center">
 				    	 	<div align="center" class="alert alert-info">
-                			<h1 class="text-info"> <strong>BIENVENIDO AL SISTEMA DE CONSULTA DE NOTAS</strong> </h1>
+                			<h1 class="text-info"> Sistema de Administración de Notas </h1>
                 			<div class="row">
 
-                			<div class="col-md-3">  <img src="img/captura.png" width="200" height="120" > </div>
-                			<div class="col-md-2 col-md-offset-2">  <img src="img/alumno.png" width="120" height="120" > </div>
-                			<div class="col-md-2 col-md-offset-1 ">  <img src="img/logo.png" width="400" height="120" > </div>
+                			<div class="col-sm-3 col-sm-offset-1">  <img src="../img/logo_otic.png" width="400" height="120" > </div>
+                			<div class="col-sm-2 col-lg-offset-1">  <img src="../img/admin.png" width="120" height="170" > </div>
+                			<div class="col-sm-2 col-lg-offset-1 ">  <img src="../img/logo.png" width="400" height="150" > </div>
 				    	 	</div>
-
 				    	 </div>
+				    	</div>
 				    </div>
 				    <div class="row">
 						<div class="col-md-10 col-md-offset-1"> 
@@ -46,7 +37,7 @@
 						 		 echo "<div class='alert alert-warning'> Nota : el simbolo ? significa que usted no ha registrado nota en ese casillero </div> </div>";
 
 						 		 echo "<div align='right'>
-										  	<a type='button' class='btn btn-default' href='index.php'>
+										  	<a type='button' class='btn btn-default' href='busqueda_profesores.php'>
 											      <span class='glyphicon glyphicon-step-backward'></span><strong> REGRESAR A LA PÁGINA PRINCIPAL </strong>
 										</a>						  
 									 </div>";
@@ -103,17 +94,7 @@
 
 
 						 						 }
-						 		echo " <br><form action='generar.php' method='POST' role='form' enctype='multipart/form-data'>
-						 				<input type='text' name='nombre_curso' value='$course' hidden >
-						 				<input type='text' name='turno' value='$turno_m' hidden >
-										<input type='text' name='apellido' value='$ap' hidden >
-
-						 				<input type='text' name='codigo_curso1' value='$curso_m' hidden >
-						 				<input type='text' name='codigo_facu' value='$codigo_facultad' hidden >
-										<input type='text' name='nombre' value='$na' hidden >
-										<input type='text' name='nombre_facu' value='$facu' hidden >			 
-				 		 			  <button type='submit' class='pull-right'> <span class='glyphicon glyphicon-print'></span> REPORTE PDF</button>
-								 		</form>";
+								
 
 						 		  echo "</tbody>
 						 		      </table>"
