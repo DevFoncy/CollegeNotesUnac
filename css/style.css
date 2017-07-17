@@ -12,3 +12,11 @@ input[class="input_corto"]{
 	text-align: center;
 	background-color: #DCF5BF;
 }
+
+button[class="boton_imagen"]{
+	 background:url(../img/admin.png);
+	 background-repeat:no-repeat;
+	  height:300px;
+	  width:300px;
+	  background-position:center;
+}

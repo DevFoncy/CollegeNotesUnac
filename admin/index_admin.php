@@ -115,3 +115,95 @@ if($_POST){
 					</div>
 <?php require 'inc/footer.inc'; ?>
 
+<div class="row" style="padding-top: 20px;">
+ <div class="col-sm-3 col-sm-offset-1">  <img  src="../img/logo_otic.png" width="400" height="120" > </div>
+ <div class="col-sm-2 col-lg-offset-1" style="margin-top: -40px;">  <img src="../img/admin.png" width="120" height="170" > </div>
+</div>
+
+<div class="row" align="center">
+		<div class="col-md-5">
+			<div class="panel panel-default">
+			<div class="panel-body">
+			<h4 style="color: red;">INSCRIPCIÓN</h4>
+			<button class="boton_hover" type="button">Examen de Admisión</button> <br /><br />
+			<h4><span style="color: #ff0000;">VERIFICACIÓN DE INSCRIPCIÓN</span></h4>
+			<button class="boton_hover" type="button">Verificar</button> <br /><br />
+			<h4><span style="color: #ff0000;">RESULTADOS DE EXAMEN</span></h4>
+			<button class="boton_hover" type="button">Ver Resultados</button> <br /><br /></div>
+			</div>
+		</div>
+		<div class="col-md-7">
+			<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="col-md-4">
+					 <img  src="../img/huella.gif"  width="200" height="70">
+					 <h3>Flujograma de inscripción</h3>	
+					 <p>La inscripción para las diferentes modalidades es vía internet mediante los siguientes pasos...</p>
+				</div>
+				<div class="col-md-4">
+					  <img  src="../img/instru.png" width="200" height="150" >	
+					  <h3>Instrucciones</h3>	
+					  <p>El examen de Admisión comprende una prueba que incluye preguntas de aptitud académica ...</p>
+				</div>
+				<div class="col-md-4">
+						 <img  src="../img/temario.png" width="200" height="150" >
+						 <h3>Temario</h3>
+
+				</div>
+
+			</div>
+		</div>
+</div>
+
+<button class="boton_imagen">
+	
+</button>
+
+
+<div class="row" align="center">
+		<div class="col-md-5">
+				<div class="panel panel-default">
+				<div class="panel-body">
+				<h4 style="color: red;">INSCRIPCIÓN</h4>
+				<button class="boton_hover" type="button">Examen de Admisión</button> <br /><br />
+				<h4><span style="color: #ff0000;">VERIFICACIÓN DE INSCRIPCIÓN</span></h4>
+				<button class="boton_hover" type="button">Verificar</button> <br /><br />
+				<h4><span style="color: #ff0000;">RESULTADOS DE EXAMEN</span></h4>
+				<button class="boton_hover" type="button">Ver Resultados</button> <br /><br /></div>
+				</div>
+				</div>
+		<div class="col-md-7">
+		<div class="panel panel-default">
+		<div class="panel-body">
+		<div class="col-md-4"><button class="flujo"></button>
+		<h3>Flujograma de inscripción</h3>
+		<p>La inscripción para las diferentes modalidades es vía internet mediante los siguientes pasos...</p>
+		</div>
+		<div class="col-md-4"><button class="tema"></button>
+		<h3>Instrucciones</h3>
+		<p>El examen de Admisión comprende una prueba que incluye preguntas de aptitud académica ...</p>
+		</div>
+		<div class="col-md-4"><button class="instru"></button>
+		<h3>Temario</h3>
+		</div>
+		</div>
+</div>
+
+<div>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.7296456045347!2d-77.119219484738!3d-12.062113345471465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cbeed7c0f247%3A0x2fe368e8fd6d30af!2sJuan+Pablo+II%2C+Bellavista+07011!5e0!3m2!1ses!2spe!4v1500059344627" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+</div>
+
+
+<div class="row">
+	<div class="col-md-6">
+	<iframe style="border: 0;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.7296456045347!2d-77.119219484738!3d-12.062113345471465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cbeed7c0f247%3A0x2fe368e8fd6d30af!2sJuan+Pablo+II%2C+Bellavista+07011!5e0!3m2!1ses!2spe!4v1500059344627" width="600" height="450" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+	</div>
+	<div class="col-md-5 col-md-offset-1">
+		<h2>Informes</h2>
+		<h4><strong>Horario de Atención</strong>Lunes-Viernes : 8:00 - 4:45 </h4>
+		<h4><strong>Teléfono</strong> 652-1399 | 652-1398 | 453-3005</h4>
+		<h5>Ciudad Universitaria Av. Juan Pablo II Nº306, Bellavista-Callao, Pabellón de Telemática 1er. piso</h5>
+
+	</div>
+
+</div>
